@@ -1,0 +1,18 @@
+@import '../../styleguide.scss';
+
+.formWrapper {
+
+}
+
+.input {
+  width: 50%;
+}
+
+.search {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  border: 1px solid $defaultColor;
+  margin: 4px;
+  align-items: center;
+}

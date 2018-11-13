@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 0.9em;
+}
+
+.inlineLi li {
+  display: inline-block;
+}
+
+.search {
+  margin-left: 200px;
+}

@@ -1,0 +1,33 @@
+@import '../../../styleguide.scss';
+
+.tabs {
+  display: block;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 50%;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+
+  & > div {
+    background-color: transparent !important;
+  }
+}
+
+.link {
+  color: $defaultColor;
+
+  &:hover {
+    border-bottom: 5px solid;
+    margin-bottom: -5px;
+  }
+
+  &.active {
+    border-bottom: 5px solid;
+    margin-bottom: -5px;
+  }
+}
+
+
+.tab {
+  color: $defaultColor !important;
+}

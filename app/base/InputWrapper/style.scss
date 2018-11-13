@@ -1,0 +1,7 @@
+@import '../../styleguide.scss';
+
+.errorWrapper {
+  font-size: $errorFontSize;
+  color: $errorColor;
+  padding-left: 4px;
+}

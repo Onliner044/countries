@@ -1,0 +1,52 @@
+@import '../../styleguide.scss';
+
+.modalClose {
+  display: none;
+}
+
+.modalOpen {
+  z-index: 100;
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  right: 25%;
+  bottom: 25%;
+  height: 512px;
+  background: $defaultWhiteColor;
+  color: $defaultColor;
+  padding: 16px;
+  -webkit-box-shadow: 4px 4px 0px 0px $lightGrayMainColor;
+  -moz-box-shadow: 4px 4px 0px 0px $lightGrayMainColor;
+  box-shadow: 4px 4px 0px 0px $lightGrayMainColor;
+}
+
+.close {
+  position: absolute;
+  right: 16px;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  outline: none;
+  font-size: 1em;
+
+  &::after {
+    content: '✖';
+    cursor: pointer;
+  }
+
+  &:hover {
+    color: $defaultLightColor;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background: $overlayColor;
+  z-index: 90;
+}

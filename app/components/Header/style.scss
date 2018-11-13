@@ -1,0 +1,19 @@
+@import '../../styleguide.scss';
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: $defaultColor;
+  font-size: $headerFontSize;
+  border-bottom: 1px solid $defaultColor;
+  height: 114px !important;
+
+  background: $lightGrayMainColor;
+  background: -webkit-linear-gradient($lightGrayMainColor 0%, $defaultWhiteColor 100%);
+  background: -o-linear-gradient($lightGrayMainColor 0%, $defaultWhiteColor 100%);
+  background: linear-gradient($lightGrayMainColor 0%, $defaultWhiteColor 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient($lightGrayMainColor, $defaultWhiteColor, GradientType=0);
+}

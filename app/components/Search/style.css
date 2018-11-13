@@ -1,0 +1,19 @@
+.search {
+  display: flex;
+  height: 20px;
+  font-family: 'Baloo', sans-serif;
+  background-color: #f0f0f0;
+}
+
+.search input {
+  font-family: 'Baloo', sans-serif;
+  color: #929292;
+}
+
+.img {
+  width: 20px;
+  height: 20px;
+  align-content: center;
+  justify-content: center;
+  cursor: pointer;
+}

@@ -6,6 +6,7 @@ import { requestCountries } from 'actions/countries';
 
 import LoadingOverlay from 'base/LoadingOverlay';
 import CountryList from './CountryList';
+import CountryCard from '../CountryCard';
 import Search from '../../components/Search';
 import { filterCountries } from '../../helpers/countiesFunctions';
 
@@ -16,14 +17,25 @@ class CountryLayout extends Component {
     super(props);
 
     this.state = {
-      findCountriesText: ''
+      findCountriesText: '',
+      selectedCountry: null
     };
 
+    this.onClick = this.onClick.bind(this);
     this.setFindCountriesText = this.setFindCountriesText.bind(this);
   }
 
   componentDidMount() {
     this.props.requestCountries();
+  }
+
+  onClick(e) {
+    const { countries } = this.props;
+    const id = e.target.attributes.id.value;
+
+    this.setState(() => ({
+      selectedCountry: countries[id]
+    }));
   }
 
   setFindCountriesText(text) {
@@ -34,9 +46,7 @@ class CountryLayout extends Component {
 
   render() {
     const { countries, isLoading } = this.props;
-    const { findCountriesText } = this.state;
-
-    const currentCountries = filterCountries(findCountriesText, countries);
+    const { findCountriesText, selectedCountry } = this.state;
 
     return (
       <div className={style.wrapper}>
@@ -52,8 +62,11 @@ class CountryLayout extends Component {
             </div>
           </li>
         </ul>
-
-        <CountryList countries={currentCountries} />
+        <CountryList
+          onClick={this.onClick}
+          countries={filterCountries(findCountriesText, countries)}
+        />
+        <CountryCard country={selectedCountry} />
         <LoadingOverlay isShown={isLoading} />
       </div>
     );

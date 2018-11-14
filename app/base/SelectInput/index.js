@@ -7,6 +7,12 @@ import style from './style.css';
 
 
 class SelectInput extends Component {
+  constructor(props) {
+    super(props);
+
+    this.input = React.createRef();
+  }
+
   componentDidMount() {
     this.focus = () => this.input.focus();
   }
@@ -21,7 +27,7 @@ class SelectInput extends Component {
       <ReactSelect
         {...props}
         className={classnames(style.select, className)}
-        ref={(node) => { this.input = node; }}
+        ref={this.input}
       />
     );
   }

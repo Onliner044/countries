@@ -14,8 +14,6 @@ class ApplicationWrapper extends Component {
     this.state = {
       socketDescriptor: null
     };
-
-    this.onSocketRequest = this.onSocketRequest.bind(this);
   }
 
   componentWillMount() {
@@ -30,7 +28,7 @@ class ApplicationWrapper extends Component {
     clearInterval(this.state.socketDescriptor);
   }
 
-  onSocketRequest() {
+  onSocketRequest = () => {
     const { onGetRooms } = this.props;
 
     onGetRooms({

@@ -22,17 +22,9 @@ import style from './style.scss';
 class GridTabs extends Component {
   constructor(props) {
     super(props);
-
-    this.applyFilterStrategy = this.applyFilterStrategy.bind(this);
-    this.allRoomsFilter = this.allRoomsFilter.bind(this);
-    this.availableRoomsFilter = this.availableRoomsFilter.bind(this);
-    this.discrepanciRoomFilter = this.discrepanciRoomFilter.bind(this);
-    this.inProgressRoomFilter = this.inProgressRoomFilter.bind(this);
   }
 
-  componentWillMount() {}
-
-  applyFilterStrategy() {
+  applyFilterStrategy = () => {
     const { query = '', filter, rooms } = this.props;
     let filteredRooms = [];
 
@@ -67,13 +59,13 @@ class GridTabs extends Component {
       });
   }
 
-  allRoomsFilter() {
+  allRoomsFilter = () => {
     const { rooms } = this.props;
 
     return rooms;
   }
 
-  availableRoomsFilter() {
+  availableRoomsFilter = () => {
     const { rooms } = this.props;
 
     return rooms
@@ -85,13 +77,13 @@ class GridTabs extends Component {
       });
   }
 
-  discrepanciRoomFilter() {
+  discrepanciRoomFilter = () => {
     const { rooms } = this.props;
 
     return rooms;
   }
 
-  inProgressRoomFilter() {
+  inProgressRoomFilter = () => {
     const { rooms } = this.props;
 
     return rooms

@@ -7,7 +7,7 @@ module.exports = Object.assign({}, baseConfig, {
   devtool: 'source-map',
   output,
   module: {
-    rules
+    rules,
   },
-  plugins
+  plugins,
 });

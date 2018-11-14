@@ -13,11 +13,9 @@ class Main extends Component {
     this.state = {
       openModal: false
     };
-
-    this.handlerClose = this.handlerClose.bind(this);
   }
 
-  handlerClose() {
+  handlerClose = () => {
     const { openModal } = this.state;
     this.setState({ openModal: !openModal });
   }

@@ -17,36 +17,44 @@ class CountryLayout extends Component {
     super(props);
 
     this.state = {
-      findCountriesText: '',
-      selectedCountry: null
+      isFilter: false,
+      filterCountries: props.countries,
+      selectedCountry: null,
     };
-
-    this.onClick = this.onClick.bind(this);
-    this.setFindCountriesText = this.setFindCountriesText.bind(this);
   }
 
   componentDidMount() {
     this.props.requestCountries();
   }
 
-  onClick(e) {
-    const { countries } = this.props;
+  onClick = (e) => {
     const id = e.target.attributes.id.value;
 
-    this.setState(() => ({
-      selectedCountry: countries[id]
+    this.setState(state => ({
+      selectedCountry: state.filterCountries[id],
     }));
   }
 
-  setFindCountriesText(text) {
+  setFilterCountries = (text) => {
+    const { countries } = this.props;
+
+    const isFilter = text !== '';
     this.setState(() => ({
-      findCountriesText: text
+      isFilter,
+      filterCountries: filterCountries(text, countries),
     }));
   }
 
   render() {
-    const { countries, isLoading } = this.props;
-    const { findCountriesText, selectedCountry } = this.state;
+    const { isLoading, countries } = this.props;
+    const { selectedCountry, filterCountries, isFilter } = this.state;
+
+    let countriesShown;
+    if (isFilter) {
+      countriesShown = filterCountries;
+    } else {
+      countriesShown = countries;
+    }
 
     return (
       <div className={style.wrapper}>
@@ -57,14 +65,14 @@ class CountryLayout extends Component {
           <li>
             <div className={style.search}>
               <Search
-                setFindCountriesText={this.setFindCountriesText}
+                setFindCountriesText={this.setFilterCountries}
               />
             </div>
           </li>
         </ul>
         <CountryList
           onClick={this.onClick}
-          countries={filterCountries(findCountriesText, countries)}
+          countries={countriesShown}
         />
         <CountryCard country={selectedCountry} />
         <LoadingOverlay isShown={isLoading} />
@@ -78,16 +86,14 @@ const mapStateToProps = (state) => {
   return { countries, isLoading };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    requestCountries: () => dispatch(requestCountries())
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  requestCountries: () => dispatch(requestCountries()),
+});
 
 CountryLayout.propTypes = {
   requestCountries: PropTypes.func,
   countries: PropTypes.arrayOf(PropTypes.shape({})),
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountryLayout);

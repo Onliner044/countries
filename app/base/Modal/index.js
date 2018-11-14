@@ -5,6 +5,12 @@ import classnames from 'classnames';
 import style from './style.scss';
 
 class Modal extends Component {
+  constructor(props) {
+    super(props);
+
+    this.input = React.createRef();
+  }
+
   render() {
     const {
       open,
@@ -21,7 +27,7 @@ class Modal extends Component {
         <div
           {...props}
           className={classnames(modalStyle, className)}
-          ref={(node) => { this.input = node; }}
+          ref={this.input}
         >
           {children}
           <div

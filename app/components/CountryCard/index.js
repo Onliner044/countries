@@ -1,79 +1,75 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import style from './style.css';
 
-class CountryCard extends Component {
-  constructor(props) {
-    super(props);
+const CountryCard = (props) => {
+  const { country } = props;
 
-    this.renderCountryCard = this.renderCountryCard.bind(this);
+  if (!country) {
+    return null;
   }
 
-  renderCountryCard() {
-    const { country } = this.props;
+  const {
+    name,
+    nativeName,
+    region,
+    subregion,
+    capital,
+    population,
+    currencies,
+    flag,
+  } = country;
 
-    if (!country) {
-      return <div className={style.box} />;
-    }
+  let renderCapital = '';
+  let renderPopulation = '';
+  if (population) {
+    renderPopulation = population;
+  }
+  if (capital) {
+    renderCapital = capital;
+    renderPopulation = `(${population})`;
+  }
 
-    const {
-      name,
-      nativeName,
-      region,
-      subregion,
-      capital,
-      population,
-      currencies,
-      flag
-    } = country;
-
-    return (
-      <div className={style.box}>
-        <ul className={style.ul}>
-          {name && <li>{name}</li>}
-          {nativeName && <li>{nativeName}</li>}
-          {flag && <li><img className={style.img} src={flag} alt="" /></li>}
-        </ul>
-        <div className={style.line} />
-        {region && <div>Region: {region}</div>}
-        {subregion && <div>Subregion: {subregion}</div>}
-        {capital || population
-          ? (
-            <div>
-              Capital: {capital || ''} {population ? `(${population})` : ''}
-            </div>
-          ) : null}
-        {currencies.length > 0
-          ? (
-            <div>
+  return (
+    <div className={style.box}>
+      <ul className={style.ul}>
+        {name && <li>{name}</li>}
+        {nativeName && <li>{nativeName}</li>}
+        {flag && <li><img className={style.img} src={flag} alt="" /></li>}
+      </ul>
+      <div className={style.line} />
+      {region && <div>Region: {region}</div>}
+      {subregion && <div>Subregion: {subregion}</div>}
+      {capital || population
+        ? (
+          <div>
+              Capital: {renderCapital} {renderPopulation}
+          </div>
+        ) : null}
+      {currencies.length > 0
+        ? (
+          <div>
               Currencies:
-              {currencies.map((currencie) => {
-                const { symbol, code } = currencie;
-                let renderSymbol = '';
-                let renderCode = '';
+            {currencies.map((currencie) => {
+              const { symbol, code } = currencie;
+              let renderSymbol = '';
+              let renderCode = '';
 
-                if (code) {
-                  renderCode = code;
-                }
-                if (symbol) {
-                  renderSymbol = symbol;
-                  renderCode = `(${code})`;
-                }
+              if (code) {
+                renderCode = code;
+              }
+              if (symbol) {
+                renderSymbol = symbol;
+                renderCode = `(${code})`;
+              }
 
-                return `${renderSymbol} ${renderCode}`;
-              }).join(',')}
-            </div>
-          ) : null
-        }
-      </div>
-    );
-  }
-
-  render() {
-    return (
-      this.renderCountryCard()
-    );
-  }
-}
+              return `${renderSymbol} ${renderCode}`;
+            }).join(', ')}
+          </div>
+        ) : null
+      }
+    </div>
+  );
+};
 
 export default CountryCard;

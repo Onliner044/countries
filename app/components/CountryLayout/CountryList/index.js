@@ -9,19 +9,17 @@ const CountryList = (props) => {
   return (
     <div className={style.wrapper}>
       {
-        countries.map((country, index) => {
-          return (
-            <div key={`country-${index}-${country.name}`}>
-              <div
-                className={style.listItem}
-                onClick={onClick}
-                id={index}
-              >
-                {country.name}, {country.region}
-              </div>
+        countries.map((country, index) => (
+          <div key={`country-${index}-${country.name}`}>
+            <div
+              className={style.listItem}
+              onClick={onClick}
+              id={index}
+            >
+              {country.name}, {country.region}
             </div>
-          );
-        })
+          </div>
+        ))
       }
     </div>
   );
@@ -29,7 +27,7 @@ const CountryList = (props) => {
 
 CountryList.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({})),
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 export default CountryList;

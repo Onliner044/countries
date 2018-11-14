@@ -1,39 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import images from './images';
 
 import style from './style.css';
 
-class Search extends Component {
-  constructor(props) {
-    super(props);
+const Search = (props) => {
+  const search = React.createRef();
 
-    this.onClick = this.onClick.bind(this);
-  }
+  const onClick = () => {
+    const { setFindCountriesText } = props;
 
-  onClick() {
-    const { setFindCountriesText } = this.props;
-
-    const text = this.search.value;
+    const text = search.current.value;
     setFindCountriesText(text);
-  }
+  };
 
-  render() {
-    return (
-      <div className={style.search}>
-        <input
-          placeholder="Search"
-          ref={node => { this.search = node; }}
-        />
-        <img
-          onClick={this.onClick}
-          className={style.img}
-          src={images.lupa}
-          alt=""
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className={style.search}>
+      <input
+        placeholder="Search"
+        ref={search}
+      />
+      <img
+        onClick={onClick}
+        className={style.img}
+        src={images.lupa}
+        alt=""
+      />
+    </div>
+  );
+};
 
 export default Search;

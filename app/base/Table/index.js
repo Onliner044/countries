@@ -24,17 +24,9 @@ class TableComponent extends Component {
       sortingColumn: props.body && props.body.length > 0 ? props.body[0].name : null,
       sortingOrder: ASC
     };
-
-    this.handleColumnSortingClick = this.handleColumnSortingClick.bind(this);
-    this.sortTable = this.sortTable.bind(this);
-    this.renderHeader = this.renderHeader.bind(this);
-    this.renderTableHeaderColumn = this.renderTableHeaderColumn.bind(this);
-    this.renderBody = this.renderBody.bind(this);
-    this.renderBodyRow = this.renderBodyRow.bind(this);
-    this.renderBodyCell = this.renderBodyCell.bind(this);
   }
 
-  handleColumnSortingClick(event, rowNumber, colNumber) {
+  handleColumnSortingClick = (event, rowNumber, colNumber) => {
     const { sorter, header, onSetSorter } = this.props;
 
     const targetColumn = header[colNumber - 1];
@@ -56,7 +48,7 @@ class TableComponent extends Component {
     }
   }
 
-  sortTable(a, b) {
+  sortTable = (a, b) => {
     const columnName = (this.state.sortingColumn || 'id').toLowerCase();
     const columnOrder = (this.state.sortingOrder || ASC);
 
@@ -73,7 +65,7 @@ class TableComponent extends Component {
     return 0;
   }
 
-  renderHeader() {
+  renderHeader = () => {
     const { header } = this.props;
 
     return (
@@ -85,7 +77,7 @@ class TableComponent extends Component {
     );
   }
 
-  renderTableHeaderColumn(cell, i) {
+  renderTableHeaderColumn = (cell, i) => {
     const { name } = this.props;
 
     const classes = [
@@ -109,7 +101,7 @@ class TableComponent extends Component {
     );
   }
 
-  renderBody() {
+  renderBody = () => {
     const { data } = this.props;
 
     return (
@@ -123,7 +115,7 @@ class TableComponent extends Component {
     );
   }
 
-  renderBodyRow(row, i) {
+  renderBodyRow = (row, i) => {
     const { body } = this.props;
 
     return (
@@ -135,7 +127,7 @@ class TableComponent extends Component {
     );
   }
 
-  renderBodyCell(row, field, i) {
+  renderBodyCell = (row, field, i) => {
     const { name } = this.props;
 
     return (

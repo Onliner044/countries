@@ -1,10 +1,10 @@
-const filterCountries = (findCountrie, countries) => {
-  if (findCountrie !== '') {
+const filterCountries = (countryName, countries) => {
+  if (countryName !== '') {
     return countries.filter((countrie) => {
       const countrieName = countrie.name.toLowerCase();
-      findCountrie = findCountrie.toLowerCase();
+      countryName = countryName.toLowerCase();
 
-      if (countrieName.indexOf(findCountrie) !== -1) {
+      if (countrieName.indexOf(countryName) !== -1) {
         return true;
       }
 
@@ -15,7 +15,7 @@ const filterCountries = (findCountrie, countries) => {
         altNames.every((name) => {
           name = name.toLowerCase();
 
-          if (name.indexOf(findCountrie) !== -1) {
+          if (name.indexOf(countryName) !== -1) {
             result = true;
             return false;
           }
